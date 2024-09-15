@@ -8,5 +8,14 @@
       <p-button #showProducts class="banner-action">Check out our Products</p-button>
     </div>
   </p-card>
+
+  @for (product of products(); track product.id) {
+    <div>
+      {{ product.name }}
+    </div>
+    <div>
+      {{ product.description }}
+    </div>
+  }
 </div>
 
