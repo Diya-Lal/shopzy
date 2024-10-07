@@ -22,6 +22,6 @@ app.route('/api/products/:id').put(saveProduct);
 
 app.route('/api/products/:id').delete(deleteProduct);
 
-const httpServer = app.listen(9001, () => {
+const httpServer = app.listen(9002, () => {
   console.log("HTTP REST API Server running at http://localhost:" + httpServer.address()["port"]);
 });

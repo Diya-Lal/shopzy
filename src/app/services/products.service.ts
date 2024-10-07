@@ -9,7 +9,7 @@ import {Product} from "../models/product.model";
 
 export class ProductsService {
 
-  ROOT_URL ="http://localhost:9001/api";
+  ROOT_URL ="http://localhost:9002/api";
   http = inject(HttpClient);
 
   public async loadAllProducts():Promise<Product[]> {

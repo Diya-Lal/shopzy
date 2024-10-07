@@ -27,7 +27,7 @@ export class ProductsComponent {
 
   public async loadProducts() {
     try {
-      const loadAllProducts = await this.productsService.loadAllProducts();
+      const loadAllProducts = await this.productsService.loadAllProducts(); //rename
       this.products.set(loadAllProducts);
     } catch (error) {
       console.error('Error loading: ', error);
