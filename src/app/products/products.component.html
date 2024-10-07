@@ -1,11 +1,54 @@
+
+
+<div class="products-banner">
+  <p-card>
+    <h1>Limited Time Deals</h1>
+      <p-carousel
+        [value]="products"
+        [numVisible]="3"
+        [numScroll]="1"
+        [responsiveOptions]="responsiveOptions">
+        <ng-template let-product pTemplate="item">
+          <div class="border-1 surface-border border-round m-2 p-3">
+            <div class="mb-3">
+              <div class="relative mx-auto">
+                <img
+                  src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}"
+                  [alt]="product.name"
+                  class="w-full border-round" />
+              </div>
+            </div>
+            <div class="mb-3 font-medium">
+              {{ product.name }}
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <div class="mt-0 font-semibold text-xl">
+                {{ '$' + product.price }}
+              </div>
+              <span>
+                            <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
+                            <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
+                        </span>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+  </p-card>
+</div>
+
+<!--On Timer Trigger-->
+@defer(on timer(5000ms)) {
+  <app-exclusive-offer></app-exclusive-offer>
+} @placeholder {<div class="placeholder"> Exclusive offer for you.... </div>}
+
 <div class="products-banner">
   <p-card>
     <div class="banner-content">
       <h1>Big Sale</h1>
       <h2 class="m-0">
-        Grab them before they are gone!
+        Check out for more
       </h2>
-      <p-button #showProducts class="banner-action">Check out our Products</p-button>
+      <p-button #showProducts class="banner-action" (click)="onShowProdcuts()">Check out our Products</p-button>
     </div>
   </p-card>
 
@@ -19,3 +62,19 @@
   }
 </div>
 
+<!--On Viewport Trigger-->
+@defer(on viewport) {
+  <app-offer-preview></app-offer-preview>
+} @placeholder {<div> placeholder </div>}
+
+<!--On Interaction Trigger-->
+@defer(on interaction(showProducts)){
+<!--  @defer (when networkSpeed === '4g') {-->
+    <app-products-list></app-products-list>
+<!--  } @placeholder {<div> Loading... </div>}-->
+}
+
+<!--On Hover Trigger-->
+<!--@defer(on hover(showProducts)){-->
+<!--  <app-products-list></app-products-list>-->
+<!--}-->
