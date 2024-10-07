@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {DataViewModule} from "primeng/dataview";
 import {ButtonModule} from "primeng/button";
 import {TagModule} from "primeng/tag";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {MessagesModule} from "primeng/messages";
 
 
 
@@ -12,7 +14,10 @@ import {TagModule} from "primeng/tag";
     CommonModule,
     DataViewModule,
     ButtonModule,
-    TagModule
+    TagModule,
+    MessagesModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ]
 })
 export class ProductsListModule { }
