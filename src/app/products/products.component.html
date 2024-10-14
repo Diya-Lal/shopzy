@@ -53,19 +53,23 @@
   </p-card>
 </div>
 
+
+<!--NgModule Based-->
+<!--@defer(on hover(showProducts)){-->
+<!--  <app-limited-products></app-limited-products>-->
+<!--}-->
+
+
 <!--On Viewport Trigger-->
 @defer(on viewport) {
   <app-offer-preview></app-offer-preview>
-} @placeholder {<div> placeholder </div>}
+} @placeholder {
+  <div> You have an amazing Offer </div>
+}
 
 <!--On Interaction Trigger-->
 @defer(on interaction(showProducts)){
 <!--  @defer (when networkSpeed === '4g') {-->
     <app-products-list></app-products-list>
-<!--  } @placeholder {<div> Loading... </div>}-->
+<!--  } @placeholder {<div style="text-align: center; margin-bottom: 2rem"> Sorry you network is too slow to load the products  </div>}-->
 }
-
-<!--On Hover Trigger-->
-<!--@defer(on hover(showProducts)){-->
-<!--  <app-products-list></app-products-list>-->
-<!--}-->

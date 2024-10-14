@@ -1,3 +1,7 @@
 <div class="card menu-right">
-  <p-menubar [model]="items" />
+  <p-menubar [model]="items"  [style.textAlign]="'right'">
+    <ng-template pTemplate="start" >
+    <h3 class="navigation-logo">SHOPZY</h3>
+  </ng-template>
+  </p-menubar>
 </div>

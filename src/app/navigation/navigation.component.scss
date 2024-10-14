@@ -1,3 +1,10 @@
-.menu-right {
-  //float:right;
+p-menubarSub .ui-submenu-list {
+  right: 0;
+  left: initial !important;
 }
+
+.navigation-logo {
+  margin-left: 1rem;
+}
+
+

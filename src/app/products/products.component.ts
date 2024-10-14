@@ -6,6 +6,7 @@ import {OfferPreviewComponent} from "./offer-preview/offer-preview.component";
 import {ProductsService} from "./products.service";
 import {CarouselModule} from "primeng/carousel";
 import {ExclusiveOfferComponent} from "./exclusive-offer/exclusive-offer.component";
+import {LimitedProductsModule} from "./limited-products/limited-products.module";
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,8 @@ import {ExclusiveOfferComponent} from "./exclusive-offer/exclusive-offer.compone
     ProductsListComponent,
     OfferPreviewComponent,
     CarouselModule,
-    ExclusiveOfferComponent
+    ExclusiveOfferComponent,
+    LimitedProductsModule
 
   ],
   templateUrl: './products.component.html',
@@ -30,7 +32,7 @@ export class ProductsComponent {
   constructor(private productsService: ProductsService) {
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.productsService.getProducts().subscribe((products) => {
       this.products = products
     });
@@ -52,17 +54,24 @@ export class ProductsComponent {
       }
     ];
   }
-  getConnectionSpeed(): string {
+
+  /**
+   * Returns the connection speed of the user.
+   */
+  public getConnectionSpeed(): string {
     const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
 
     if (connection) {
-      return connection.effectiveType;  // Values like 'slow-2g', '2g', '3g', '4g'
+      return connection.effectiveType;
     }
 
-    return 'unknown'; // Default if API is not supported
+    return 'unknown';
   }
 
-  onShowProdcuts() {
+  /**
+   * Shows the list of products when the button is clicked.
+   */
+  public onShowProdcuts() : void   {
     this.networkSpeed = this.getConnectionSpeed();
   }
 }

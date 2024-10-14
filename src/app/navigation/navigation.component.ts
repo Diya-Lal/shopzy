@@ -16,15 +16,15 @@ export class NavigationComponent {
   public items: any;
 
   public ngOnInit() {
-    this.items = [
-      {
-        label: 'Products',
-        icon: 'pi pi-server'
-      },
-      {
-        label: 'Signals',
-        icon: 'pi-wave-pulse'
-      },
-    ]
+    // this.items = [
+    //   {
+    //     label: 'Products',
+    //     icon: 'pi pi-server'
+    //   },
+    //   {
+    //     label: 'Signals',
+    //     icon: 'pi-wave-pulse'
+    //   },
+    // ]
   }
 }

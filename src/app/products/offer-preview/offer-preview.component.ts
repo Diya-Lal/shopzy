@@ -11,33 +11,6 @@ const OFFER_TIME = 30;
   styleUrl: './offer-preview.component.scss'
 })
 export class OfferPreviewComponent {
-  // timeLeft: number = 30; // Start at 30 seconds
-  // interval: any;
-  // progress: number = 100; // Full bar at start
-  //
-  // ngOnInit(): void {
-  //   this.startCountDown();
-  // }
-  //
-  // startCountDown(): void {
-  //   const totalTime = 30; // Total time in seconds
-  //
-  //   this.interval = setInterval(() => {
-  //     if (this.timeLeft > 0) {
-  //       this.timeLeft--;
-  //       this.progress = Math.floor((this.timeLeft / totalTime) * 100); // Update progress
-  //     } else {
-  //       clearInterval(this.interval); // Stop when countdown reaches 0
-  //     }
-  //   }, 1000); // 1-second intervals
-  // }
-  //
-  // ngOnDestroy(): void {
-  //   if (this.interval) {
-  //     clearInterval(this.interval);
-  //   }
-  // }
-
   offerExpired = signal(false);
   timer = timer(0, 1000).pipe(
     map((val) => {

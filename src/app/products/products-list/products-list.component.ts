@@ -6,6 +6,7 @@ import {ButtonModule} from "primeng/button";
 import {Product} from "./Product";
 import {TagModule} from "primeng/tag";
 import {OfferPreviewComponent} from "../offer-preview/offer-preview.component";
+import {first} from "rxjs";
 
 @Component({
   selector: 'app-products-list',
@@ -16,6 +17,8 @@ import {OfferPreviewComponent} from "../offer-preview/offer-preview.component";
 })
 export class ProductsListComponent {
 
+  public a = 3
+  public b = 2
   public products: any[] = [];
   constructor(private productsService: ProductsService) {
 
@@ -42,4 +45,6 @@ export class ProductsListComponent {
         return undefined;
     }
   };
+
+  protected readonly first = first;
 }
