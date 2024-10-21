@@ -24,3 +24,113 @@
   font-weight: bold;
   margin-top: 2rem;
 }
+
+.products-banner {
+  padding: 2rem;
+  background-color: var(--surface-ground);
+
+  .p-card {
+    &:first-child {
+      margin-bottom: 2rem;
+
+      ::ng-deep .p-card-body {
+        padding: 0;
+      }
+    }
+  }
+
+  .banner-content {
+    padding: 3rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-800) 100%);
+    border-radius: var(--border-radius);
+
+    h1 {
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+    }
+
+    h2 {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0 0 2rem 0;
+    }
+
+    .banner-action {
+      ::ng-deep .p-button {
+        background: white;
+        color: var(--primary-color);
+        border: none;
+        padding: 1rem 2rem;
+        font-weight: 600;
+
+        &:hover {
+          background: var(--primary-50);
+        }
+
+        &:focus {
+          box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+
+    .product-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--card-shadow);
+      }
+
+      h3 {
+        color: var(--text-color);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0 0 1rem 0;
+      }
+
+      p {
+        color: var(--text-color-secondary);
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      ::ng-deep .p-card-body {
+        padding: 1.5rem;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media screen and (max-width: 768px) {
+  .products-banner {
+    padding: 1rem;
+
+    .banner-content {
+      padding: 2rem 1rem;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+    }
+
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -1,80 +1,39 @@
-
-
-<div class="products-banner">
-  <p-card>
-    <h1>Limited Time Deals</h1>
-      <p-carousel
-        [value]="products"
-        [numVisible]="3"
-        [numScroll]="1"
-        [responsiveOptions]="responsiveOptions">
-        <ng-template let-product pTemplate="item">
-          <div class="border-1 surface-border border-round m-2 p-3">
-            <div class="mb-3">
-              <div class="relative mx-auto">
-                <img
-                  src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}"
-                  [alt]="product.name"
-                  class="w-full border-round" />
-              </div>
-            </div>
-            <div class="mb-3 font-medium">
-              {{ product.name }}
-            </div>
-            <div class="flex justify-content-between align-items-center">
-              <div class="mt-0 font-semibold text-xl">
-                {{ '$' + product.price }}
-              </div>
-              <span>
-                            <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
-                            <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
-                        </span>
-            </div>
-          </div>
-        </ng-template>
-      </p-carousel>
-  </p-card>
-</div>
-
-<!--On Timer Trigger-->
-@defer(on timer(5000ms)) {
-  <app-exclusive-offer></app-exclusive-offer>
-} @placeholder {<div class="placeholder"> Exclusive offer for you.... </div>}
-
 <div class="products-banner">
   <p-card>
     <div class="banner-content">
       <h1>Big Sale</h1>
-      <h2 class="m-0">
-        Check out for more
-      </h2>
-      <p-button #showProducts class="banner-action" (click)="onShowProdcuts()">Check out our Products</p-button>
+      <h2>Grab them before they are gone!</h2>
+      <p-button #showProducts
+                styleClass="p-button-rounded banner-action"
+                label="Check out our Products"
+                (click)="loadProducts()">
+      </p-button>
     </div>
   </p-card>
 
-  @for (product of products(); track product.id) {
-    <div>
-      {{ product.name }}
-    </div>
-    <div>
-      {{ product.description }}
-    </div>
-  }
+  <!-- Create New Product Button -->
+  <div class="create-product">
+    <p-button label="Create New Product" icon="pi pi-plus" styleClass="p-button-success"></p-button> <!-- add modal here. sme here for the creation.-->
+  </div>
+
+  <!-- Products Grid -->
+  <div class="products-grid">
+    @for (product of products(); track product.id) {
+
+      <!-- Put the product card in its own component -->
+      <!-- you can wrap it in an a tag and then use query params to pass the product id, and have it like products/id=?345 -->
+      <p-card class="product-card" [style.cursor]="'pointer'"> <!-- implement the ckicking behaviour -->
+        <div class="product-content">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <!-- Product Actions -->
+          <div class="product-actions"> <!-- routes??? -->
+            <p-button label="Edit" icon="pi pi-pencil" styleClass="p-button-warning" (click)="editProduct(product)"></p-button><!-- should I just add an event as a parameter? if yes, how to I get the product? -->
+            <!-- add a form or dialogue here for the editing of the product -->
+            <p-button label="Delete" icon="pi pi-trash" styleClass="p-button-danger" (click)="deleteProduct(product.id)"></p-button>
+          </div>
+        </div>
+      </p-card>
+    }
+  </div>
 </div>
-
-<!--On Viewport Trigger-->
-@defer(on viewport) {
-  <app-offer-preview></app-offer-preview>
-} @placeholder {<div> placeholder </div>}
-
-<!--On Interaction Trigger-->
-@defer(on interaction(showProducts)){
-<!--  @defer (when networkSpeed === '4g') {-->
-    <app-products-list></app-products-list>
-<!--  } @placeholder {<div> Loading... </div>}-->
-}
-
-<!--On Hover Trigger-->
-<!--@defer(on hover(showProducts)){-->
-<!--  <app-products-list></app-products-list>-->
-<!--}-->
