@@ -5,6 +5,7 @@ import {ButtonModule} from "primeng/button";
 import {Product} from "../models/product.model";
 import {InputTextModule} from "primeng/inputtext";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {CheckboxModule} from "primeng/checkbox";
 
 @Component({
   selector: 'edit-product-modal',
@@ -16,40 +17,46 @@ import {InputTextareaModule} from "primeng/inputtextarea";
     ButtonModule,
     InputTextModule,
     InputTextareaModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CheckboxModule
   ],
   //signal: true,
   styleUrls: ['./edit-product-modal.component.scss']
 })
 export class EditProductModalComponent {
   visible = model.required<boolean>();
+
   value = input.required<Product>();
-  save = output<Product>();
+  mode = input.required<'create' | 'update'>();
+
+  save = output<Partial<Product>>();
 
   fb = inject(FormBuilder);
   form = this.fb.group({
     name: [''],
     description: [''],
+    price: [0],
+    quantity: [0],
+    onSale: [false],
+    salePrice: [0]
   });
 
   constructor() {
-    effect(() => { // effect is triggered everytime when the value of a dependent signal changes
-      const product = this.value();
-      this.form.patchValue({
-        name: product.name,
-        description: product.description,
-      });
+    effect(() => {
+      this.form.patchValue({...this.value()});
     });
   }
 
   saveProduct() {
     this.visible.set(false);
-    const changes = this.form.value as Partial<Product>; // the form only returns a partial type, (because it is only name & description)
-    this.save.emit({...this.value(), ...changes});
+    const changes = this.form.value as Partial<Product>; // the form has a partial product
+    if (this.mode() === 'update') {
+      changes.id = this.value().id;
+    }
+    this.save.emit(changes);
   }
 
   onCancel() {
     this.visible.set(false);
-    this.form.reset();
   }
 }

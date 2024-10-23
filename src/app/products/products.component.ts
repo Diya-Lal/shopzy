@@ -1,14 +1,15 @@
-import {Component, computed, effect, inject, signal} from '@angular/core';
+import {Component, computed, effect, ElementRef, inject, Injector, signal, viewChildren} from '@angular/core';
 import {ButtonModule} from "primeng/button";
-import {CardModule} from "primeng/card";
+import {Card, CardModule} from "primeng/card";
 import {ProductsService} from "../services/products.service";
 import {Product} from "../models/product.model";
 import {DialogModule} from "primeng/dialog";
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {InputTextareaModule} from "primeng/inputtextarea";
-import {saveProduct} from "../../../server/save-product.route";
 import {EditProductModalComponent} from "../edit-product-modal/edit-product-modal.component";
+import {toObservable, toSignal} from "@angular/core/rxjs-interop";
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -21,7 +22,7 @@ import {EditProductModalComponent} from "../edit-product-modal/edit-product-moda
     InputTextModule,
     InputTextareaModule,
     ButtonModule,
-    EditProductModalComponent
+    EditProductModalComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
@@ -38,32 +39,59 @@ export class ProductsComponent {
   numberOfProducts = computed(() => this.products().length + this.testnumber); // computed signal to hold the number of products
 
   editDialogueVisible = signal<boolean>(false);
-
+  editDialogueMode = signal<'create' | 'update'>('create');
   viewVisible: boolean = false; // For the view dialog
-  viewNew: boolean = false; // For the view dialog
 
-  currentProduct2 = signal<Product | undefined>;
-  // Initialize with a default empty product?
-  currentProduct = signal<Product>({
+  defaultProduct: Product = {
     onSale: false,
     price: 0,
     quantity: 0,
     salePrice: 0,
-    id: 0, name: '',
-    description: '' }); // writeable signal to hold the current product
+    id: 0,
+    name: '',
+    description: ''
+  }
 
+  // Initialize with a default empty product?
+  currentProduct = signal<Product>(this.defaultProduct) // writeable signal to hold the current product
+
+  // example of a query signal, can work with viewChild, viewChildren, contentChild, contentChildren
+  // can configure the query signal to return ElementRef, Component, Directive, etc.
+  // the query signal can be used like any other signal
+  allProductsViewChildren = viewChildren(
+    'productCard',
+    {read: Card}
+  );
 
   productsService = inject(ProductsService); // inject the ProductsService
 
+  //RXJS interop
+  productsObservable$ = toObservable(this.products); // convert the products signal to an observable
+  // internally uses signal effects to subscribe to the signal and emit the values as an observable
+  onSaleObservable$ = this.productsObservable$.pipe(
+    map(products => products.filter(product => product.onSale)) // filter out the products that are on sale
+  );
+  onSaleSignal = toSignal(this.onSaleObservable$, { // convert back to signal, signals need an initial value unlike observables
+    initialValue: []
+  });
+
   constructor() {
-    this.loadProducts().then(() =>
-      console.log('constructor: ', this.products())); // load products in the constructor. alternatively can be done onInit too
+    this.loadProducts().then(() => {}); // load products in the constructor. alternatively can be done onInit too
+    effect(() => {
+      console.log('Products:', this.products()); // use an effect to log the products, triggered whenever the products signal changes
+    });
+
+    effect(() =>{
+      console.log('View children:', this.allProductsViewChildren());
+    });
   }
 
   public async loadProducts() {
     try {
       const loadAllProducts = await this.productsService.loadAllProducts(); //rename
-      this.products.set(loadAllProducts);
+      // sort by id descending
+      const sortedProducts = loadAllProducts.sort((a, b) => b.id - a.id);
+      this.products.set(sortedProducts);
     } catch (error) {
       console.error('Error loading: ', error);
     }
@@ -85,13 +113,20 @@ export class ProductsComponent {
 
   // Edit product
   public editProduct(product: Product) {
-    this.currentProduct.set({ ...product }); // make a copy of the product and set it to the currentProduct signal
+    this.currentProduct.set(product); // set it to the currentProduct signal
+    this.editDialogueMode.set('update'); // set the mode to update
+    this.editDialogueVisible.set(true);
+  }
+
+  public addProduct() {
+    this.currentProduct.set(this.defaultProduct); // set the currentProduct signal to the default product
+    this.editDialogueMode.set('create'); // set the mode to create
     this.editDialogueVisible.set(true);
   }
 
   // view product
   public viewProduct(product: Product) {
-    this.currentProduct.set({ ...product }); // COPY the product
+    this.currentProduct.set(product);
     this.viewVisible = true;
   }
 
@@ -122,15 +157,25 @@ export class ProductsComponent {
       }
     }
   }*/
-  async saveProduct(product: Product) {
+  async saveProduct(product: Partial<Product>) {
     try {
-      const updatedProduct = await this.productsService.editProduct(product.id, product);
-      const updatedProducts = this.products().map(product =>
-        product.id === updatedProduct.id ? updatedProduct : product
-      );
+      let updatedProducts;
+
+      if (product.id) { // edit mode
+        const updatedProduct = await this.productsService.editProduct(product.id, product);
+        updatedProducts = this.products().map(product =>
+          product.id === updatedProduct.id ? updatedProduct : product
+        );
+      } else { // create mode
+        const newProduct = await this.productsService.createProduct(product);
+        updatedProducts = [newProduct, ...this.products()];
+      }
+
       this.products.set(updatedProducts);
     } catch (error) {
       console.error('Error saving: ', error);
     }
   }
+
+  protected readonly console = console;
 }

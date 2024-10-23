@@ -27,13 +27,14 @@ export class ProductsService {
   }
 
   // create a new product (C)
-  public async createProduct(product: Product):Promise<Product> {
-    const $newProduct = this.http.post<Product>(`${this.ROOT_URL}/products`, product);
+  // partial because we cannot have the id field yet
+  public async createProduct(product: Partial<Product>):Promise<Product> {
+    const $newProduct = this.http.post<Product>(`${this.ROOT_URL}/addProduct`, product);
     return firstValueFrom($newProduct);
   }
 
   // update a product (U)
-  public async editProduct(id: number, product: Product):Promise<Product> {
+  public async editProduct(id: number, product: Partial<Product>):Promise<Product> {
     const $updatedProduct = this.http.put<Product>(`${this.ROOT_URL}/products/${id}`, product);
     return firstValueFrom($updatedProduct);
   }

@@ -4,28 +4,27 @@
     <div class="banner-content">
       <h1>Big Sale</h1>
       <h2>Grab them before they are gone!</h2>
-      <p-button #showProducts
+      <p-button
                 styleClass="p-button-rounded banner-action"
-                label="Check out our Products"
-                (click)="loadProducts()">
+                label="Log on sale"
+                (click)="console.log('On Sale Products', onSaleSignal())" >
       </p-button>
     </div>
   </p-card>
 
+  <p>Number of products {{numberOfProducts()}}</p>
+
   <!-- Create New Product Button -->
   <div class="create-product">
-    <p-button label="Create New Product" icon="pi pi-plus" styleClass="p-button-success"></p-button> <!-- add modal here. sme here for the creation.-->
+    <p-button label="Create New Product" icon="pi pi-plus" styleClass="p-button-success" (click)="addProduct()"></p-button>
   </div>
-
-  <p>Number of products {{numberOfProducts()}}</p>
 
   <!-- Products Grid -->
   <div class="products-grid">
     @for (product of products(); track product.id) {
-
       <!-- Put the product card in its own component -->
       <!-- you can wrap it in an a tag and then use query params to pass the product id, and have it like products/id=?345 -->
-      <p-card class="product-card" [style.cursor]="'pointer'" (click)="viewProduct(product)">
+      <p-card class="product-card" [style.cursor]="'pointer'" (click)="viewProduct(product)" #productCard>
         <div class="product-content">
           <h3>{{ product.name }}</h3>
           <p>{{ product.description }}</p>
@@ -42,11 +41,10 @@
   <edit-product-modal
     [(visible)]="editDialogueVisible"
     [value]="currentProduct()"
+    [mode]="editDialogueMode()"
     (save)="saveProduct($event)"
   >
-
   </edit-product-modal>
-
 
   <!-- PrimeNG Dialog for Viewing Product -->
   <!-- Maybe refactor to use a single dialogue? -->

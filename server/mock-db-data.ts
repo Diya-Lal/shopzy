@@ -9,7 +9,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Bluetooth wireless headphones with noise cancellation.',
     price: 120,
     salePrice: 108, // 10% discount applied
-    onSale: true,
+    onSale: false,
     category: 'Electronics',
     quantity: 15,
     imageUrl: 'assets/images/wireless_headphones.jpg'
@@ -57,7 +57,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: '7-in-1 USB-C hub with HDMI and Ethernet.',
     price: 60,
     salePrice: 54,
-    onSale: true,
+    onSale: false,
     category: 'Accessories',
     quantity: 50,
     imageUrl: 'assets/images/usb_c_hub.jpg'
@@ -69,7 +69,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: '1TB portable SSD with USB 3.1 connectivity.',
     price: 150,
     salePrice: 135,
-    onSale: true,
+    onSale: false,
     category: 'Storage',
     quantity: 25,
     imageUrl: 'assets/images/portable_ssd.jpg'
@@ -81,7 +81,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Adjustable aluminum smartphone stand.',
     price: 20,
     salePrice: 18,
-    onSale: true,
+    onSale: false,
     category: 'Accessories',
     quantity: 100,
     imageUrl: 'assets/images/smartphone_stand.jpg'
@@ -93,7 +93,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Fast wireless charger compatible with Qi-enabled devices.',
     price: 35,
     salePrice: 31.5,
-    onSale: true,
+    onSale: false,
     category: 'Accessories',
     quantity: 40,
     imageUrl: 'assets/images/wireless_charger.jpg'
@@ -102,10 +102,10 @@ export const PRODUCTS: {[key: number]: Product} =
     id: 9,
     name: 'Noise-Canceling Earbuds',
     code: 'NCE-009',
-    description: 'True wireless earbuds with active noise cancellation.',
+    description: 'false wireless earbuds with active noise cancellation.',
     price: 99,
     salePrice: 89.1,
-    onSale: true,
+    onSale: false,
     category: 'Electronics',
     quantity: 60,
     imageUrl: 'assets/images/noise_canceling_earbuds.jpg'
@@ -117,7 +117,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Water-resistant backpack with padded laptop compartment.',
     price: 70,
     salePrice: 63,
-    onSale: true,
+    onSale: false,
     category: 'Accessories',
     quantity: 35,
     imageUrl: 'assets/images/laptop_backpack.jpg'
@@ -129,7 +129,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Fitness tracker with heart rate monitor and GPS.',
     price: 130,
     salePrice: 117,
-    onSale: true,
+    onSale: false,
     category: 'Wearables',
     quantity: 45,
     imageUrl: 'assets/images/fitness_tracker.jpg'
@@ -141,7 +141,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Smartwatch with customizable watch faces and apps.',
     price: 250,
     salePrice: 225,
-    onSale: true,
+    onSale: false,
     category: 'Wearables',
     quantity: 22,
     imageUrl: 'assets/images/smartwatch.jpg'
@@ -153,7 +153,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: '4K action camera with waterproof case.',
     price: 200,
     salePrice: 180,
-    onSale: true,
+    onSale: false,
     category: 'Electronics',
     quantity: 18,
     imageUrl: 'assets/images/action_camera.jpg'
@@ -165,7 +165,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Portable Bluetooth speaker with 360-degree sound.',
     price: 80,
     salePrice: 72,
-    onSale: true,
+    onSale: false,
     category: 'Electronics',
     quantity: 55,
     imageUrl: 'assets/images/bluetooth_speaker.jpg'
@@ -177,7 +177,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Quadcopter drone with 1080p camera and GPS.',
     price: 300,
     salePrice: 270,
-    onSale: true,
+    onSale: false,
     category: 'Electronics',
     quantity: 12,
     imageUrl: 'assets/images/drone.jpg'
@@ -189,7 +189,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Virtual reality headset compatible with PC and consoles.',
     price: 400,
     salePrice: 360,
-    onSale: true,
+    onSale: false,
     category: 'Electronics',
     quantity: 8,
     imageUrl: 'assets/images/vr_headset.jpg'
@@ -201,7 +201,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Rechargeable electric toothbrush with multiple modes.',
     price: 60,
     salePrice: 54,
-    onSale: true,
+    onSale: false,
     category: 'Personal Care',
     quantity: 70,
     imageUrl: 'assets/images/electric_toothbrush.jpg'
@@ -213,7 +213,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Ionic hair dryer with diffuser and concentrator attachments.',
     price: 45,
     salePrice: 40.5,
-    onSale: true,
+    onSale: false,
     category: 'Personal Care',
     quantity: 25,
     imageUrl: 'assets/images/hair_dryer.jpg'
@@ -225,7 +225,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Automatic espresso machine with milk frother.',
     price: 500,
     salePrice: 450,
-    onSale: true,
+    onSale: false,
     category: 'Kitchen Appliances',
     quantity: 5,
     imageUrl: 'assets/images/espresso_machine.jpg'
@@ -237,7 +237,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: '5.8-quart air fryer with digital touchscreen.',
     price: 120,
     salePrice: 108,
-    onSale: true,
+    onSale: false,
     category: 'Kitchen Appliances',
     quantity: 15,
     imageUrl: 'assets/images/air_fryer.jpg'
@@ -249,7 +249,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Wi-Fi connected robot vacuum with mapping technology.',
     price: 350,
     salePrice: 315,
-    onSale: true,
+    onSale: false,
     category: 'Home Appliances',
     quantity: 10,
     imageUrl: 'assets/images/robot_vacuum.jpg'
@@ -261,7 +261,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Foldable electric scooter with 15-mile range.',
     price: 300,
     salePrice: 270,
-    onSale: true,
+    onSale: false,
     category: 'Transportation',
     quantity: 8,
     imageUrl: 'assets/images/electric_scooter.jpg'
@@ -273,7 +273,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Mirrorless digital camera with 24MP sensor.',
     price: 800,
     salePrice: 720,
-    onSale: true,
+    onSale: false,
     category: 'Photography',
     quantity: 6,
     imageUrl: 'assets/images/digital_camera.jpg'
@@ -285,7 +285,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Lightweight aluminum tripod for cameras.',
     price: 50,
     salePrice: 45,
-    onSale: true,
+    onSale: false,
     category: 'Photography',
     quantity: 40,
     imageUrl: 'assets/images/tripod.jpg'
@@ -297,7 +297,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Graphics drawing tablet with pen pressure sensitivity.',
     price: 250,
     salePrice: 225,
-    onSale: true,
+    onSale: false,
     category: 'Computers',
     quantity: 14,
     imageUrl: 'assets/images/graphics_tablet.jpg'
@@ -309,7 +309,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Wi-Fi enabled smart light bulb with color-changing feature.',
     price: 25,
     salePrice: 22.5,
-    onSale: true,
+    onSale: false,
     category: 'Home Automation',
     quantity: 80,
     imageUrl: 'assets/images/smart_light_bulb.jpg'
@@ -321,7 +321,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: '1.7-liter electric kettle with temperature control.',
     price: 70,
     salePrice: 63,
-    onSale: true,
+    onSale: false,
     category: 'Kitchen Appliances',
     quantity: 30,
     imageUrl: 'assets/images/electric_kettle.jpg'
@@ -333,7 +333,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Height-adjustable standing desk with memory settings.',
     price: 400,
     salePrice: 360,
-    onSale: true,
+    onSale: false,
     category: 'Furniture',
     quantity: 5,
     imageUrl: 'assets/images/standing_desk.jpg'
@@ -345,7 +345,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Ergonomic office chair with lumbar support.',
     price: 150,
     salePrice: 135,
-    onSale: true,
+    onSale: false,
     category: 'Furniture',
     quantity: 20,
     imageUrl: 'assets/images/office_chair.jpg'
@@ -357,7 +357,7 @@ export const PRODUCTS: {[key: number]: Product} =
     description: 'Solid-body electric guitar with maple neck.',
     price: 600,
     salePrice: 540,
-    onSale: true,
+    onSale: false,
     category: 'Musical Instruments',
     quantity: 7,
     imageUrl: 'assets/images/electric_guitar.jpg'

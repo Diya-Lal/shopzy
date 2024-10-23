@@ -1,5 +1,5 @@
 <!-- PrimeNG Dialog for Editing Product -->
-<p-dialog [(visible)]="visible" [modal]="true" [baseZIndex]="10000" [appendTo]="'body'" header="Edit Product"
+<p-dialog [(visible)]="visible" [modal]="true" [baseZIndex]="10000" [appendTo]="'body'" [header]="mode() === 'update' ? 'Edit Product' : 'Create Product'"
           [style]="{width: '400px'}">
   <div class="p-fluid" [formGroup]="form">
     <div class="p-field">
@@ -12,9 +12,25 @@
       <textarea id="productDescription" rows="3" pInputTextarea
                 formControlName="description"></textarea>
     </div>
+    <div class="p-field">
+      <label for="productPrice">Product Price</label>
+      <input id="productPrice" type="number" pInputText formControlName="price" />
+    </div>
+    <div class="p-field">
+      <label for="productSalePrice">Sale Price</label>
+      <input id="productSalePrice" type="number" pInputText formControlName="salePrice" />
+    </div>
+    <div class="p-field-checkbox">
+      <p-checkbox id="productOnSale" formControlName="onSale" binary="true"></p-checkbox>
+      <label for="productOnSale">On Sale</label>
+    </div>
+    <div class="p-field">
+      <label for="productQuantity">Quantity</label>
+      <input id="productQuantity" type="number" pInputText formControlName="quantity" />
+    </div>
   </div>
   <p-footer>
     <p-button label="Save" icon="pi pi-check" styleClass="p-button-success" (click)="saveProduct()"></p-button>
-    <p-button label="Cancel" icon="pi pi-times"  styleClass="p-button-secondary" (onClick)="onCancel()"></p-button>
+    <p-button label="Cancel" icon="pi pi-times"  styleClass="p-button-secondary" (click)="onCancel()"></p-button>
   </p-footer>
 </p-dialog>
