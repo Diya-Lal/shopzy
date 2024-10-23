@@ -12,6 +12,8 @@ export class ProductsService {
   private readonly ROOT_URL ="http://localhost:9002/api";
   private readonly http = inject(HttpClient);
 
+  // make one of the methods toSignal and vice versa
+
   // loads ALL prducts (R)
   public async loadAllProducts():Promise<Product[]> {
     const $products = this.http.get<Product[]>(`${this.ROOT_URL}/products`); // load it as an observable

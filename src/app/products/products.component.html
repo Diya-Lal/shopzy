@@ -1,4 +1,5 @@
 <div class="products-banner">
+
   <p-card>
     <div class="banner-content">
       <h1>Big Sale</h1>
@@ -16,24 +17,61 @@
     <p-button label="Create New Product" icon="pi pi-plus" styleClass="p-button-success"></p-button> <!-- add modal here. sme here for the creation.-->
   </div>
 
+  <p>Number of products {{numberOfProducts()}}</p>
+
   <!-- Products Grid -->
   <div class="products-grid">
     @for (product of products(); track product.id) {
 
       <!-- Put the product card in its own component -->
       <!-- you can wrap it in an a tag and then use query params to pass the product id, and have it like products/id=?345 -->
-      <p-card class="product-card" [style.cursor]="'pointer'"> <!-- implement the ckicking behaviour -->
+      <p-card class="product-card" [style.cursor]="'pointer'" (click)="viewProduct(product)">
         <div class="product-content">
           <h3>{{ product.name }}</h3>
           <p>{{ product.description }}</p>
-          <!-- Product Actions -->
-          <div class="product-actions"> <!-- routes??? -->
-            <p-button label="Edit" icon="pi pi-pencil" styleClass="p-button-warning" (click)="editProduct(product)"></p-button><!-- should I just add an event as a parameter? if yes, how to I get the product? -->
-            <!-- add a form or dialogue here for the editing of the product -->
+          <!-- Actions -->
+          <div class="product-actions" (click)="$event.stopPropagation()">
+            <p-button label="Edit" icon="pi pi-pencil" (click)="editProduct(product)" styleClass="p-button-warning"></p-button>
             <p-button label="Delete" icon="pi pi-trash" styleClass="p-button-danger" (click)="deleteProduct(product.id)"></p-button>
           </div>
         </div>
       </p-card>
     }
   </div>
+
+  <edit-product-modal
+    [(visible)]="editDialogueVisible"
+    [value]="currentProduct()"
+    (save)="saveProduct($event)"
+  >
+
+  </edit-product-modal>
+
+
+  <!-- PrimeNG Dialog for Viewing Product -->
+  <!-- Maybe refactor to use a single dialogue? -->
+  <!-- separate the view and edit dialogues in separate wrapper components and just pass the product -->
+  <p-dialog [(visible)]="viewVisible" [modal]="true" [baseZIndex]="10000" [appendTo]="'body'" header="Product Details" [style]="{width: '400px'}">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>Product Name</label>
+        <p>{{ currentProduct().name }}</p>
+      </div>
+      <div class="p-field">
+        <label>Product Description</label>
+        <p>{{ currentProduct().description }}</p>
+      </div>
+      <div class="p-field">
+        <label>Price</label>
+        <p>{{ currentProduct().price }}</p>
+      </div>
+      <div class="p-field">
+        <label>Quantity</label>
+        <p>{{ currentProduct().quantity }}</p>
+      </div>
+    </div>
+    <p-footer>
+      <p-button label="Close" icon="pi pi-times" (click)="viewVisible = false" styleClass="p-button-secondary"></p-button>
+    </p-footer>
+  </p-dialog>
 </div>
