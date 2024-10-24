@@ -64,6 +64,7 @@ export class ProductsComponent {
   );
 
   //RXJS interop
+  // lets say our component needs to work with observables
   productsObservable$ = toObservable(this.products); // convert the products signal to an observable
   // internally uses signal effects to subscribe to the signal and emit the values as an observable
   onSaleObservable$ = this.productsObservable$.pipe(
