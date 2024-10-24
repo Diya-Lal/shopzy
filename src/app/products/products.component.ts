@@ -32,7 +32,7 @@ export class ProductsComponent {
   products = signal<Product[]>([]);
 
 
-  testnumber: number = 2; // a mutable variable
+  testnumber: number = 100; // a mutable variable
   // combined signals with other mutable variables not good practice
   numberOfProducts = computed(() => this.products().length + this.testnumber); // computed signal to hold the number of products
 
