@@ -5,10 +5,34 @@
       <h1>Big Sale</h1>
       <h2>Grab them before they are gone!</h2>
       <p-button
-                styleClass="p-button-rounded banner-action"
-                label="Log on sale"
-                (click)="console.log('On Sale Products', onSaleSignal())" >
+        styleClass="p-button-rounded banner-action"
+        label="Log on sale"
+        (click)="console.log('On Sale Products', onSaleSignal())">
       </p-button>
+      <!-- On-Sale Products Display -->
+      <div class="on-sale-products">
+        <div class="on-sale-grid">
+          @if(onSaleSignal().length > 0;) {
+            @for(product of onSaleSignal(); track product.id) {
+              <div>
+                <p-card
+                  class="product-card"
+                  [style.cursor]="'pointer'"
+                  (click)="viewProduct(product)"
+                  #productCard>
+                  <div class="product-content">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.description }}</p>
+                    <p>Sale Price: {{ product.salePrice }}</p>
+                    <p>Quantity: {{ product.quantity }}</p>
+                  </div>
+                </p-card>
+              </div>
+            }
+          }
+        </div>
+      </div>
+      <!-- End of On-Sale Products Display -->
     </div>
   </p-card>
 
@@ -22,7 +46,6 @@
   <!-- Products Grid -->
   <div class="products-grid">
     @for (product of products(); track product.id) {
-      <!-- Put the product card in its own component -->
       <!-- you can wrap it in an a tag and then use query params to pass the product id, and have it like products/id=?345 -->
       <p-card class="product-card" [style.cursor]="'pointer'" (click)="viewProduct(product)" #productCard>
         <div class="product-content">

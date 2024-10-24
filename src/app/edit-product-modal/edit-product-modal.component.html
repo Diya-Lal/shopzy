@@ -1,5 +1,9 @@
-<!-- PrimeNG Dialog for Editing Product -->
-<p-dialog [(visible)]="visible" [modal]="true" [baseZIndex]="10000" [appendTo]="'body'" [header]="mode() === 'update' ? 'Edit Product' : 'Create Product'"
+<!-- PrimeNG Dialogue for Editing Product & adding new One-->
+<p-dialog [(visible)]="visible"
+          [modal]="true"
+          [baseZIndex]="10000"
+          [appendTo]="'body'"
+          [header]="mode() === 'update' ? 'Edit Product' : 'Create Product'"
           [style]="{width: '400px'}">
   <div class="p-fluid" [formGroup]="form">
     <div class="p-field">

@@ -12,7 +12,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Electronics',
     quantity: 15,
-    imageUrl: 'assets/images/wireless_headphones.jpg'
   },
   2: {
     id: 2,
@@ -24,7 +23,7 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: true,
     category: 'Electronics',
     quantity: 30,
-    imageUrl: 'assets/images/gaming_mouse.jpg'
+
   },
   3: {
     id: 3,
@@ -36,7 +35,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: true,
     category: 'Electronics',
     quantity: 20,
-    imageUrl: 'assets/images/mechanical_keyboard.jpg'
   },
   4: {
     id: 4,
@@ -48,7 +46,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: true,
     category: 'Electronics',
     quantity: 10,
-    imageUrl: 'assets/images/4k_monitor.jpg'
   },
   5: {
     id: 5,
@@ -60,7 +57,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Accessories',
     quantity: 50,
-    imageUrl: 'assets/images/usb_c_hub.jpg'
   },
   6: {
     id: 6,
@@ -72,7 +68,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Storage',
     quantity: 25,
-    imageUrl: 'assets/images/portable_ssd.jpg'
   },
   7: {
     id: 7,
@@ -84,7 +79,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Accessories',
     quantity: 100,
-    imageUrl: 'assets/images/smartphone_stand.jpg'
   },
   8: {
     id: 8,
@@ -96,7 +90,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Accessories',
     quantity: 40,
-    imageUrl: 'assets/images/wireless_charger.jpg'
   },
   9: {
     id: 9,
@@ -108,7 +101,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Electronics',
     quantity: 60,
-    imageUrl: 'assets/images/noise_canceling_earbuds.jpg'
   },
   10: {
     id: 10,
@@ -120,7 +112,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Accessories',
     quantity: 35,
-    imageUrl: 'assets/images/laptop_backpack.jpg'
   },
   11: {
     id: 11,
@@ -132,7 +123,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Wearables',
     quantity: 45,
-    imageUrl: 'assets/images/fitness_tracker.jpg'
   },
   12: {
     id: 12,
@@ -144,7 +134,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Wearables',
     quantity: 22,
-    imageUrl: 'assets/images/smartwatch.jpg'
   },
   13: {
     id: 13,
@@ -156,7 +145,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Electronics',
     quantity: 18,
-    imageUrl: 'assets/images/action_camera.jpg'
   },
   14: {
     id: 14,
@@ -168,7 +156,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Electronics',
     quantity: 55,
-    imageUrl: 'assets/images/bluetooth_speaker.jpg'
   },
   15: {
     id: 15,
@@ -180,7 +167,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Electronics',
     quantity: 12,
-    imageUrl: 'assets/images/drone.jpg'
   },
   16: {
     id: 16,
@@ -192,7 +178,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Electronics',
     quantity: 8,
-    imageUrl: 'assets/images/vr_headset.jpg'
   },
   17: {
     id: 17,
@@ -204,7 +189,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Personal Care',
     quantity: 70,
-    imageUrl: 'assets/images/electric_toothbrush.jpg'
   },
   18: {
     id: 18,
@@ -216,7 +200,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Personal Care',
     quantity: 25,
-    imageUrl: 'assets/images/hair_dryer.jpg'
   },
   19: {
     id: 19,
@@ -228,7 +211,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Kitchen Appliances',
     quantity: 5,
-    imageUrl: 'assets/images/espresso_machine.jpg'
   },
   20: {
     id: 20,
@@ -240,7 +222,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Kitchen Appliances',
     quantity: 15,
-    imageUrl: 'assets/images/air_fryer.jpg'
   },
   21: {
     id: 21,
@@ -252,7 +233,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Home Appliances',
     quantity: 10,
-    imageUrl: 'assets/images/robot_vacuum.jpg'
   },
   22: {
     id: 22,
@@ -264,7 +244,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Transportation',
     quantity: 8,
-    imageUrl: 'assets/images/electric_scooter.jpg'
   },
   23: {
     id: 23,
@@ -276,7 +255,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Photography',
     quantity: 6,
-    imageUrl: 'assets/images/digital_camera.jpg'
   },
   24: {
     id: 24,
@@ -288,7 +266,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Photography',
     quantity: 40,
-    imageUrl: 'assets/images/tripod.jpg'
   },
   25: {
     id: 25,
@@ -300,7 +277,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Computers',
     quantity: 14,
-    imageUrl: 'assets/images/graphics_tablet.jpg'
   },
   26: {
     id: 26,
@@ -312,7 +288,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Home Automation',
     quantity: 80,
-    imageUrl: 'assets/images/smart_light_bulb.jpg'
   },
   27: {
     id: 27,
@@ -324,7 +299,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Kitchen Appliances',
     quantity: 30,
-    imageUrl: 'assets/images/electric_kettle.jpg'
   },
   28: {
     id: 28,
@@ -336,7 +310,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Furniture',
     quantity: 5,
-    imageUrl: 'assets/images/standing_desk.jpg'
   },
   29: {
     id: 29,
@@ -348,7 +321,6 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Furniture',
     quantity: 20,
-    imageUrl: 'assets/images/office_chair.jpg'
   },
   30: {
     id: 30,
@@ -360,6 +332,5 @@ export const PRODUCTS: {[key: number]: Product} =
     onSale: false,
     category: 'Musical Instruments',
     quantity: 7,
-    imageUrl: 'assets/images/electric_guitar.jpg'
   },
 };

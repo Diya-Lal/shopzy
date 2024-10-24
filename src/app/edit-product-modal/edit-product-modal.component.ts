@@ -24,14 +24,27 @@ import {CheckboxModule} from "primeng/checkbox";
   styleUrls: ['./edit-product-modal.component.scss']
 })
 export class EditProductModalComponent {
+  // model input to control the visibility of the dialog
+  // you can read and write to this signal
+  // two-way binding
   visible = model.required<boolean>();
 
+  // value input signal to hold the current product
+  // you can only read from this signal
   value = input.required<Product>();
   mode = input.required<'create' | 'update'>();
 
+  // output signal to emit the changes to the product
+  // partial product because we only want to update the changed fields
   save = output<Partial<Product>>();
 
+  // inject the form builder to create the form
+  // injection is done lazily
   fb = inject(FormBuilder);
+
+  // form object to hold the product data
+  // the form is initialized with the default values
+  // the form is updated with the current product when the value signal changes
   form = this.fb.group({
     name: [''],
     description: [''],
@@ -43,11 +56,17 @@ export class EditProductModalComponent {
 
   constructor() {
     effect(() => {
+      // runs whenever any of the signals used inside change the value -> will run when this.value() changes
+      // update the form with the provided (in this case current) product
+      // all properties of this.value() signal are copied to the form
       this.form.patchValue({...this.value()});
+
+      console.log(`EditProductModalComponent: `, this.value());
     });
   }
 
-  saveProduct() {
+  // save the product
+  public saveProduct() {
     this.visible.set(false);
     const changes = this.form.value as Partial<Product>; // the form has a partial product
     if (this.mode() === 'update') {
@@ -56,7 +75,7 @@ export class EditProductModalComponent {
     this.save.emit(changes);
   }
 
-  onCancel() {
+  public onCancel() {
     this.visible.set(false);
   }
 }

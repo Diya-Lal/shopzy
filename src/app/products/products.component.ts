@@ -28,21 +28,22 @@ import { map } from 'rxjs/operators';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
-  testnumber: number = 2;
+  // writeable signal to hold all the products
+  products = signal<Product[]>([]);
 
-  // make a computed signal with many signals to showcase how they update
 
-  products = signal<Product[]>([]); // writeable signal to hold all the products
-
-  // how does the computed work under the hood, maybe code analysis? how it does this implicitly?
-  // combined signals with other mutable variables not good (explain)
+  testnumber: number = 2; // a mutable variable
+  // combined signals with other mutable variables not good practice
   numberOfProducts = computed(() => this.products().length + this.testnumber); // computed signal to hold the number of products
 
+  // signals to control the visibility of the edit dialogue
   editDialogueVisible = signal<boolean>(false);
   editDialogueMode = signal<'create' | 'update'>('create');
-  viewVisible: boolean = false; // For the view dialog
+  viewVisible: boolean = false; // For the view dialog, not via signal
 
-  defaultProduct: Product = {
+
+  // default product to initialize the currentProduct signal
+  public defaultProduct: Product = {
     onSale: false,
     price: 0,
     quantity: 0,
@@ -51,8 +52,7 @@ export class ProductsComponent {
     name: '',
     description: ''
   }
-
-  // Initialize with a default empty product?
+  // Initialize the signal with a default empty product
   currentProduct = signal<Product>(this.defaultProduct) // writeable signal to hold the current product
 
   // example of a query signal, can work with viewChild, viewChildren, contentChild, contentChildren
@@ -62,8 +62,6 @@ export class ProductsComponent {
     'productCard',
     {read: Card}
   );
-
-  productsService = inject(ProductsService); // inject the ProductsService
 
   //RXJS interop
   productsObservable$ = toObservable(this.products); // convert the products signal to an observable
@@ -77,21 +75,28 @@ export class ProductsComponent {
 
   constructor() {
     this.loadProducts().then(() => {}); // load products in the constructor. alternatively can be done onInit too
+
     effect(() => {
       console.log('Products:', this.products()); // use an effect to log the products, triggered whenever the products signal changes
     });
 
+    // showcase the use of viewChildren query signal via an effect
     effect(() =>{
       console.log('View children:', this.allProductsViewChildren());
     });
   }
 
+
+  productsService = inject(ProductsService); // inject the ProductsService
+
+  // ASYNC/AWAIT example to load products
   public async loadProducts() {
     try {
-      const loadAllProducts = await this.productsService.loadAllProducts(); //rename
+      const loadAllProducts = await this.productsService.loadAllProducts();
       // sort by id descending
-      const sortedProducts = loadAllProducts.sort((a, b) => b.id - a.id);
-      this.products.set(sortedProducts);
+      // uncomment if we want to keep the new products on top even after refresh
+      // const sortedProducts = loadAllProducts.sort((a, b) => b.id - a.id);
+      this.products.set(loadAllProducts);
     } catch (error) {
       console.error('Error loading: ', error);
     }
@@ -157,20 +162,32 @@ export class ProductsComponent {
       }
     }
   }*/
-  async saveProduct(product: Partial<Product>) {
+
+  // responsible for saving a product, either by UPDATING an existing product or CREATING a new one
+  public async saveProduct(product: Partial<Product>) {
     try {
+      // declare a variable to hold the updated list of products
+      // will be used to store the new list of products after updating or adding new
       let updatedProducts;
 
       if (product.id) { // edit mode
         const updatedProduct = await this.productsService.editProduct(product.id, product);
         updatedProducts = this.products().map(product =>
+          // iterate over the current list of products
+          // for each, check that the product's id matches the id of the updatedProduct
+          // if a match is found, replace the old product with the updatedProduct
+          // otherwise keep the original unchanged
           product.id === updatedProduct.id ? updatedProduct : product
         );
       } else { // create mode
+        // await the creation of a new product via the backend service call
+        // add the new product to the BEGINNING of the list of products
         const newProduct = await this.productsService.createProduct(product);
+        // make a copy of the current list of products and add the new product to the beginning
         updatedProducts = [newProduct, ...this.products()];
       }
 
+      // update the products signal with the updated list of products
       this.products.set(updatedProducts);
     } catch (error) {
       console.error('Error saving: ', error);

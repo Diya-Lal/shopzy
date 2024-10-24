@@ -8,5 +8,4 @@ export type Product = {
   onSale: boolean;
   category: string;
   quantity: number;
-  imageUrl: string;
 }
