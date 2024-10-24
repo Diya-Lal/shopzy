@@ -12,6 +12,9 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'shopzy';
 
+
+  //ignore till end
+
   public testSignal = signal('test-signal');
 
   constructor() {
